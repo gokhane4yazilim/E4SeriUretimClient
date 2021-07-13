@@ -1,0 +1,48 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Bölge Listesi</span>
+    <a routerLink="add" class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i> Yeni Bölge
+        Ekle</a>
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Tabloda ara..." [(ngModel)]="filterTerm">
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Bölge Kodu</th>
+            <th scope="col">Bölge Adı</th>
+            <th scope="col">Bölge Açıklaması</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let area of areas | filter: filterTerm | paginate : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+        };let i = index" [class.active]="i == currentIndex">
+            <td>{{area.code}}</td>
+            <td>{{area.name}}</td>
+            <td>{{area.description}}</td>
+            <td>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        İşlem
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" routerLink="update/{{area.id}}"><i class="fa fa-edit"></i> Güncelle</a>
+                        <a class="dropdown-item" (click)="delete(area.id)"><i class="fa fa-close"></i> Sil</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+
+<div class="d-flex justify-content-center">
+    <pagination-controls responsive="true" previousLabel="Önceki" nextLabel="Sonraki"
+        (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+</div>

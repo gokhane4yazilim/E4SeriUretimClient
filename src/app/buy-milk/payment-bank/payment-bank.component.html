@@ -1,0 +1,132 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Banka Ödeme</span>
+</div>
+
+<form [formGroup]="addForm" (ngSubmit)="submitForm()" class="w-75 mx-auto">
+    <div class="row">
+        <div class="col-6">
+            <div class="form-group row">
+                <label for="name" class="col-sm-4 col-form-label col-form-label-sm">Cari Ünvanı</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" disabled value="{{partner?.name}}" id="name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="area" class="col-sm-4 col-form-label col-form-label-sm">Bölge</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="area" disabled value="{{partner?.area}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="village" class="col-sm-4 col-form-label col-form-label-sm">Köy</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="village" disabled value="{{partner?.village}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="queueNo" class="col-sm-4 col-form-label col-form-label-sm">Sıra No</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control form-control-sm" id="queueNo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="bank" class="col-sm-4 col-form-label col-form-label-sm">Banka</label>
+                <div class="col-8">
+                    <select class="form-control form-control-sm" id="bank">
+                        <option>Yapı Kredi</option>
+                    </select>
+                </div>              
+            </div>
+            <div class="form-group row">
+                <label for="bankAccount" class="col-sm-4 col-form-label col-form-label-sm">Banka Hesabı</label>
+                <div class="col-8">
+                    <select class="form-control form-control-sm" id="bankAccount">
+                        <option>Yapı Kredi</option>
+                    </select>
+                </div>              
+            </div>
+            <div class="form-group row">
+                <label for="month" class="col-sm-4 col-form-label col-form-label-sm">Ay</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control form-control-sm" id="month">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="date" class="col-sm-4 col-form-label col-form-label-sm">Tarih</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control form-control-sm" id="date">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="mDate" class="col-sm-4 col-form-label col-form-label-sm">Müstahsil Tarihi</label>
+                <div class="col-sm-8">
+                    <input type="date" class="form-control form-control-sm" id="mDate">
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <div class="form-group row">
+                <label for="amount" class="col-sm-4 col-form-label col-form-label-sm">Miktar</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control form-control-sm" id="amount">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="total" class="col-sm-4 col-form-label col-form-label-sm">Toplam</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="total" value="{{partner?.balance}}">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="stopaj" class="col-sm-4 col-form-label col-form-label-sm">Stopaj</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control form-control-sm" id="stopaj">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="borsa" class="col-sm-4 col-form-label col-form-label-sm">Borsa</label>
+                <div class="col-sm-8">
+                    <input type="number" class="form-control form-control-sm" id="borsa">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="totalNet" class="col-sm-4 col-form-label col-form-label-sm">Tutar</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" disabled id="totalNet">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="report" class="col-sm-4 col-form-label col-form-label-sm">Rapor</label>
+                <div class="col-8">
+                    <select class="form-control form-control-sm" id="report">
+                        <option>XtraReport</option>
+                    </select>
+                </div>              
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="printAfterSave" formControlName="bagkur">
+                            <label class="form-check-label" for="printAfterSave">
+                                Kaydettikten sonra yazdır
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-6">
+                    <button class="btn btn-primary btn-sm btn-block">Yazdır</button>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <a routerLink="../../" class="btn btn-secondary btn-block btn-sm">Vazgeç</a>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block btn-sm">Kaydet</button>
+        </div>
+    </div>
+</form>
+
+
+

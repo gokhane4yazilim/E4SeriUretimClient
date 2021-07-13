@@ -1,0 +1,53 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;"> Detaylı Yem Satışı</span>
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Cari Ünvanı</th>
+            <th scope="col">Bölge</th>
+            <th scope="col">Köy</th>
+            <th scope="col">Fiş No</th>
+            <th scope="col">Stok</th>
+            <th scope="col">Miktar</th>
+            <th scope="col">Fiyat</th>
+            <th scope="col">TckNo</th>
+            <th scope="col">VergiNo</th>
+            <th scope="col">Vergi Dairesi</th>
+            <th scope="col">Tarih</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let line of lines">
+            <td>{{line.partnerName}}</td>
+            <td>{{line.area}}</td>
+            <td>{{line.village}}</td>
+            <td>{{line.ficheNo}}</td>
+            <td>{{line.item}}</td>
+            <td>{{line.amount}}</td>
+            <td>{{line.price}}</td>
+            <td>{{line.tckNo}}</td>
+            <td>{{line.taxNo}}</td>
+            <td>{{line.taxOffice}}</td>
+            <td>{{line.date | date : 'dd/MM/y'}}</td>
+            <td>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Aktarma
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o"></i> Pdf Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o"></i> Xls Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o"></i> Xlsx Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-code-o"></i> Html Aktarma</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+
+
+

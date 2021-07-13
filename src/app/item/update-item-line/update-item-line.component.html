@@ -1,0 +1,67 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Ürün Hareketi Güncelle / {{item?.name}}</span>
+</div>
+
+<form [formGroup]="updateForm" (ngSubmit)="submitForm()" class="w-75 mx-auto">
+    <input type="hidden" formControlName="id">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group">
+                <label for="partnerId">Cari</label>
+                <select class="form-control" id="partnerId" formControlName="partnerId">
+                    <option value="{{null}}" disabled>Cari Seç</option>
+                    <option *ngFor="let partner of partners" value="{{partner.id}}">{{partner.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="warehouseId">Depo</label>
+                <select class="form-control" id="warehouseId" formControlName="warehouseId">
+                    <option value="{{null}}" disabled>Depo Seç</option>
+                    <option *ngFor="let warehouse of warehouses" value="{{warehouse.id}}">{{warehouse.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="unitId">Ürün Birim</label>
+                <select class="form-control" id="unitId" formControlName="unitId">
+                    <option value="{{null}}" disabled>Ürün Birimi Seç</option>
+                    <option *ngFor="let unit of units" value="{{unit.id}}">{{unit.name}}</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="lineType">Hareket Türü</label>
+                <input type="text" class="form-control" id="lineType" formControlName="lineType">
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="amount">Miktar</label>
+                <input type="text" class="form-control" id="amount" formControlName="amount">
+            </div>
+            <div class="form-group">
+                <label for="addAmount">Ek Miktar</label>
+                <input type="text" class="form-control" id="addAmount" formControlName="addAmount">
+            </div>
+            <div class="form-group">
+                <label for="mainAmount">Ana Miktar</label>
+                <input type="text" class="form-control" id="mainAmount" formControlName="mainAmount">
+            </div>               
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <label for="price">Fiyat</label>
+                <input type="number" class="form-control" id="price" formControlName="price" placeholder="0.00">
+            </div>
+            <div class="form-group">
+                <label for="vatRate">KDV Oranı</label>
+                <input type="text" class="form-control" id="vatRate" formControlName="vatRate">
+            </div>
+            <div class="form-group">
+                <label for="discount">İndirim</label>
+                <input type="text" class="form-control" id="discount" formControlName="discount">
+            </div> 
+        </div>
+    </div>
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+    
+</form>
+

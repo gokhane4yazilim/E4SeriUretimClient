@@ -1,0 +1,46 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">{{partner?.name}} Cari Hareketleri</span>
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Cari Ünvanı</th>
+            <th scope="col">Cari Kodu</th>
+            <th scope="col">Bölge</th>
+            <th scope="col">Köy</th>
+            <th scope="col">Tarih</th>
+            <th scope="col">Hareket Türü</th>
+            <th scope="col">Tutar</th>
+            <th scope="col">Tutar Türü</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let itemLine of itemLines">
+            <td>{{partner.name}}</td>
+            <td>{{partner.code}}</td>
+            <td>{{partner.area}}</td>
+            <td>{{partner.village}}</td>
+            <td>{{itemLine.creationDate | date : 'dd/MM/y'}}</td>
+            <td>{{itemLine.lineType}}</td>
+            <td>{{itemLine.total}}</td>
+            <td>{{itemLine.priceType}}</td>
+            <td>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        Aktarma
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-pdf-o"></i> Pdf Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o"></i> Xls Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-excel-o"></i> Xlsx Aktarma</a>
+                        <a class="dropdown-item" href="#"><i class="fa fa-file-code-o"></i> Html Aktarma</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+
+

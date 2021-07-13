@@ -1,0 +1,90 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Cari Listesi</span>
+    <a routerLink="add" class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i> Yeni Cari
+        Ekle</a>
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Tabloda ara..." [(ngModel)]="filterTerm">
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Cari Ünvanı</th>
+            <th scope="col">Cari Kodu</th>
+            <th scope="col">Köy</th>
+            <th scope="col">Bölge</th>
+            <th scope="col">Bakiye</th>
+            <th scope="col">Bakiye Türü</th>
+            <th scope="col">TCKNO</th>
+            <th scope="col">VergiNo</th>
+            <th scope="col">Vergi Dairesi</th>
+            <th scope="col">Bağkur</th>
+            <th scope="col">Borsa</th>
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let partner of partners | filter: filterTerm | paginate : {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+        };let i = index" [class.active]="i == currentIndex">
+            <td>{{partner.name}}</td>
+            <td>{{partner.code}}</td>
+            <td>{{partner.village}}</td>
+            <td>{{partner.area}}</td>
+            <td>{{partner.balance | number:'1.0-2'}}</td>
+            <td>{{partner.balanceType}}</td>
+            <td>{{partner.tckNo}}</td>
+            <td>{{partner.taxNo}}</td>
+            <td>{{partner.taxOffice}}</td>
+            <td *ngIf="partner.bagkur; else elseBlock">
+                <span class="badge badge-success">Evet</span>
+            </td>
+            <ng-template #elseBlock>
+                <td>
+                    <span class="badge badge-danger">Hayır</span>
+                </td>
+            </ng-template>
+            <td *ngIf="partner.borsa; else elseBlock">
+                <span class="badge badge-success">Evet</span>
+                <ng-template #elseBlock>
+            <td>
+                <span class="badge badge-danger">Hayır</span>
+            </td>
+            </ng-template>
+            </td>
+            <td>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        İşlem
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" routerLink="update/{{partner.id}}"><i class="fa fa-edit"></i>
+                            Güncelle</a>
+                        <a class="dropdown-item" (click)="delete(partner.id)" style="cursor: pointer;"><i class="fa fa-close"></i> Sil</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/partner/{{partner.id}}/sale-food/{{partner.itemPriceGroupId}}"><i class="fa fa-long-arrow-up"></i> Yem Satışı</a>
+                        <a class="dropdown-item" routerLink="/partner/{{partner.id}}/buy-milk/{{partner.itemPriceGroupId}}" ><i class="fa fa-long-arrow-down"></i>
+                            Süt Alımı</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/partner/list-partner-line/{{partner.id}}"><i
+                                class="fa fa-user"></i> Cari Hareketleri</a>
+                        <a class="dropdown-item" routerLink="/partner/payment-line/{{partner.id}}"><i class="fa fa-dollar"></i> Ödeme Hareketleri</a>
+                        <div class="dropdown-divider"></div>
+                        <a class="dropdown-item" routerLink="/partner/payment-cash/{{partner.id}}"><i class="fa fa-money"></i> Ödeme Nakit</a>
+                        <a class="dropdown-item" routerLink="/partner/payment-bank/{{partner.id}}"><i class="fa fa-bank"></i> Ödeme Banka</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+
+<div class="d-flex justify-content-center">
+    <pagination-controls responsive="true" previousLabel="Önceki" nextLabel="Sonraki"
+        (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+</div>

@@ -1,0 +1,127 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Cari Güncelle</span>
+</div>
+
+<form [formGroup]="updateForm" (ngSubmit)="submitForm()" class="w-75 mx-auto">
+    <div class="row">
+        <div class="col-4">
+            <div class="form-group row">
+                <label for="name" class="col-sm-4 col-form-label col-form-label-sm">Cari Ünvanı</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="name" formControlName="name">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="code" class="col-sm-4 col-form-label col-form-label-sm">Cari Kodu</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="code" formControlName="code">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="description" class="col-sm-4 col-form-label col-form-label-sm">Açıklama</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="description" formControlName="description">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="areaId" class="col-sm-4 col-form-label col-form-label-sm">Bölge Seçiniz</label>
+                <div class="col-8">
+                    <select class="form-control form-control-sm" id="areaId" formControlName="areaId"
+                    (change)="onAreaChange($event.target.value)">
+                    <option *ngFor="let area of areas" [value]="area.id">{{area.name}}</option>
+                </select>
+                </div>              
+            </div>
+            <div class="form-group row">
+                <label for="villageId" class="col-sm-4 col-form-label col-form-label-sm">Köy Seçiniz</label>
+                <div class="col-8">
+                    <select class="form-control form-control-sm" id="villageId" formControlName="villageId">
+                    <option *ngFor="let village of villages" [value]="village.id">{{village.name}}</option>
+                </select>
+                </div>              
+            </div>
+            <div class="form-group row">
+                <label for="itemPriceGroupId" class="col-sm-4 col-form-label col-form-label-sm">Fiyat Grubu</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="itemPriceGroupId" value="{{itemPriceGroup?.name}}" readonly>
+                    <input type="hidden" formControlName="itemPriceGroupId" value="{{itemPriceGroup?.id}}">
+                </div>              
+            </div>
+            <div class="form-group row">
+                <label for="iban" class="col-sm-4 col-form-label col-form-label-sm">IBAN</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="iban" formControlName="iban">
+                </div>
+            </div>
+        </div>
+        <div class="col-4">
+            <div class="form-group row">
+                <label for="address1" class="col-sm-4 col-form-label col-form-label-sm">Adres</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="address1" formControlName="address1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="address2" class="col-sm-4 col-form-label col-form-label-sm">Adres 2</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="address2" formControlName="address2">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phoneNumber1" class="col-sm-4 col-form-label col-form-label-sm">Tel</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="phoneNumber1" formControlName="phoneNumber1">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="phoneNumber2" class="col-sm-4 col-form-label col-form-label-sm">Tel 2</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="phoneNumber2" formControlName="phoneNumber2">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="tckNo" class="col-sm-4 col-form-label col-form-label-sm">TCKNO</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="tckNo" formControlName="tckNo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="taxNo" class="col-sm-4 col-form-label col-form-label-sm">Vergi No</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="taxNo" formControlName="taxNo">
+                </div>
+            </div>
+            <div class="form-group row">
+                <label for="taxOffice" class="col-sm-4 col-form-label col-form-label-sm">Vergi Dairesi</label>
+                <div class="col-sm-8">
+                    <input type="text" class="form-control form-control-sm" id="taxOffice" formControlName="taxOffice">
+                </div>
+            </div>        
+        </div>
+        <div class="col-4">
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="bagkur" formControlName="bagkur">
+                    <label class="form-check-label" for="bagkur">
+                        Bağkur
+                    </label>
+                </div>
+            </div>
+            <div class="form-group">
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="borsa" formControlName="borsa">
+                    <label class="form-check-label" for="borsa">
+                        Borsa
+                    </label>
+                </div>
+            </div>
+        </div>
+        <div class="col-6">
+            <a routerLink="../../" class="btn btn-secondary btn-block btn-sm">Vazgeç</a>
+        </div>
+        <div class="col-6">
+            <button type="submit" class="btn btn-primary btn-block btn-sm">Kaydet</button>
+        </div>
+    </div>
+</form>
+

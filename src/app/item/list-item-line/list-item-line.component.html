@@ -1,0 +1,80 @@
+<div class="alert alert-info" role="alert">
+    <span style="font-size: large;">Ürün Hareket Listesi / {{item?.name}} </span>
+    <a routerLink="/item/add-item-line/{{item?.id}}" class="btn btn-primary btn-sm" style="float: right;"><i class="fa fa-plus"></i> Yeni Hareket Ekle</a>
+</div>
+
+<div class="form-group">
+    <input type="text" class="form-control" placeholder="Tabloda ara..." [(ngModel)]="filterTerm">
+</div>
+
+<table class="table table-hover">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">Cari</th>
+            <th scope="col">Oluşturulma Tarihi</th>
+            <th scope="col">Ürün</th>
+            <th scope="col">Ürün Birim</th>
+            <th scope="col">Depo</th>
+            <th scope="col">Hareket Türü</th>
+            <th scope="col">Miktar</th>
+            <th scope="col">Ek Miktar</th>
+            <th scope="col">Ana Miktar</th>         
+            <th scope="col">Fiyat</th>        
+            <th scope="col">Toplam Tutar</th>
+            <th scope="col">KDV Oranı</th>
+            <th scope="col">KDV Tutarı</th>
+            <th scope="col">İndirim</th>
+            <th scope="col">Net Tutar</th>
+            
+            
+            <th scope="col"></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let itemLine of itemLines | filter: filterTerm | paginate: {
+            itemsPerPage: tableSize,
+            currentPage: page,
+            totalItems: count
+        };let i = index" [class.active]="i == currentIndex">
+            <td>{{itemLine.partner}}</td>
+            <td>{{itemLine.creationDate}}</td> 
+            <td>{{itemLine.item}}</td>
+            <td>{{itemLine.unit}}</td>
+            <td>{{itemLine.warehouse}}</td>
+            <td>{{itemLine.lineType}}</td>
+            <td>{{itemLine.amount}}</td>
+            <td>{{itemLine.addAmount}}</td>
+            <td>{{itemLine.mainAmount}}</td>        
+            <td>{{itemLine.price}}</td>        
+            <td>{{itemLine.total}}</td>
+            <td>{{itemLine.vatRate}}</td>
+            <td>{{itemLine.totalVat}}</td>
+            <td>{{itemLine.discount}}</td>
+            <td>
+                {{
+                    itemLine.totalNet
+                }}
+            </td>
+            
+            <td>
+                <div class="btn-group dropleft">
+                    <button type="button" class="btn btn-primary btn-sm dropdown-toggle" data-toggle="dropdown"
+                        aria-haspopup="true" aria-expanded="false">
+                        İşlem
+                    </button>
+                    <div class="dropdown-menu">
+                        <a class="dropdown-item" routerLink="/item/{{item?.id}}/update-item-line/{{itemLine.id}}"><i class="fa fa-edit"></i> Güncelle</a>
+                        <a class="dropdown-item" (click)="delete(itemLine.id)"><i class="fa fa-close"></i> Sil</a>
+                    </div>
+                </div>
+            </td>
+        </tr>
+</table>
+
+<div class="d-flex justify-content-center">
+    <pagination-controls responsive="true" previousLabel="Önceki" nextLabel="Sonraki"
+        (pageChange)="onTableDataChange($event)">
+    </pagination-controls>
+</div>
+
+
